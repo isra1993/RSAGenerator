@@ -37,6 +37,8 @@ public class Window extends JFrame {
 	private JButton dataButton;
 	private JButton messageButton;
 	private JButton clearButton;
+	private JButton invertRol;
+	private JButton resetPari;
 	
 	private JMenuBar menu;
 	
@@ -394,6 +396,28 @@ public class Window extends JFrame {
 		constraints.weightx = 0.0;
 		constraints.weighty = 0.0;
 		
+		this.invertRol = new JButton("Invert Rol");
+		constraints.gridx = 1;
+		constraints.gridy = 1;
+		constraints.gridwidth = 1;
+		constraints.gridheight = 1;
+		constraints.weightx = 1.0;
+		constraints.weighty = 1.0;
+		this.panel4.add(invertRol, constraints);
+		constraints.weightx = 0.0;
+		constraints.weighty = 0.0;
+		
+		this.resetPari = new JButton("Reset Pari Library");
+		constraints.gridx = 2;
+		constraints.gridy = 2;
+		constraints.gridwidth = 1;
+		constraints.gridheight = 1;
+		constraints.weightx = 1.0;
+		constraints.weighty = 1.0;
+		this.panel4.add(resetPari, constraints);
+		constraints.weightx = 0.0;
+		constraints.weighty = 0.0;
+		
 		this.setVisible(true);
 	}
 
@@ -402,6 +426,8 @@ public class Window extends JFrame {
 		this.dataButton.addActionListener(controller);
 		this.messageButton.addActionListener(controller);
 		this.clearButton.addActionListener(controller);
+		this.invertRol.addActionListener(controller);
+		this.resetPari.addActionListener(controller);
 	}
 
 	public String getP() {
@@ -492,4 +518,11 @@ public class Window extends JFrame {
 		return clearButton;
 	}
 	
+	public JButton getInvertRol() {
+		return this.invertRol;
+	}
+	
+	public JButton getResetPari() {
+		return this.resetPari;
+	}
 }
