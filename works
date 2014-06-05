@@ -1,0 +1,2 @@
+gcc -fPIC --share -o pari.so *.c *.h  -I/usr/lib/jvm/java-7-openjdk-amd64/include/ -Wl,-rpath, /usr/local/lib/libpari.so /usr/local/lib/libpari.so.2.5.5 /usr/local/lib/libpari.so.3
+
