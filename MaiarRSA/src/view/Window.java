@@ -409,7 +409,7 @@ public class Window extends JFrame {
 		
 		this.resetPari = new JButton("Reset Pari Library");
 		constraints.gridx = 2;
-		constraints.gridy = 2;
+		constraints.gridy = 1;
 		constraints.gridwidth = 1;
 		constraints.gridheight = 1;
 		constraints.weightx = 1.0;
