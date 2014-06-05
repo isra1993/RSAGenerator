@@ -10,28 +10,34 @@ import view.Window;
 public class Controller implements ActionListener {
 
 	private Window window;
-	private RSAInterface generator;
+	private RSAInterface rsa;
 	private static final int DEFAULT_R_LENGTH = 10;
 	private int maxMsgLength;
 	private boolean encrypt;
+	private boolean initRSAAlgorithm;
 
-	public Controller(Window window, RSAInterface generator) {
+	public Controller(Window window, RSAInterface rsa) {
 		this.window = window;
-		this.generator = generator;
+		this.rsa = rsa;
 		this.encrypt = true;
 		this.maxMsgLength = 0;
+		this.initRSAAlgorithm = false;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
+		if(!this.initRSAAlgorithm) {
+			this.initRSAAlgorithm = true;
+			this.rsa.init();
+		}
 		if (event.getSource() == window.getPrimesButton()) {
-			String[] fields = this.generator.getPQ(DEFAULT_R_LENGTH);
+			String[] fields = this.rsa.getPQ(DEFAULT_R_LENGTH);
 			window.setpField(fields[0]);
 			window.setqField(fields[1]);
 			System.out.println(Arrays.toString(fields));
 			window.setDataButtonEnabled(true);
 		} else if (event.getSource() == window.getDataButton()) {
-			String[] fields = this.generator.getEDN(window.getP(),
+			String[] fields = this.rsa.getEDN(window.getP(),
 					window.getQ());
 			this.maxMsgLength = (int) Double.parseDouble(fields[0]);
 			System.out.println(this.maxMsgLength);
@@ -43,12 +49,12 @@ public class Controller implements ActionListener {
 		} else if (event.getSource() == window.getMessageButton()) {
 			String msg = window.getWrittenMessage();
 			if (this.encrypt) {
-				window.setProcessedField(this.generator.cipherMessage(
+				window.setProcessedField(this.rsa.cipherMessage(
 						window.getN(), window.getE(), msg, maxMsgLength));
 			} else {
 				window.setProcessedField("");
 				System.out.println(msg);
-				String txt = this.generator.decipherMessage(window.getN(),
+				String txt = this.rsa.decipherMessage(window.getN(),
 						window.getD(), msg, maxMsgLength);
 				window.setProcessedField(txt);
 			}
