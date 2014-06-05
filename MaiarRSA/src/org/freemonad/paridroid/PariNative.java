@@ -38,14 +38,16 @@ public class PariNative {
 			String ss = sc.nextLine() + "\n";
 			if (ss.contains("}\n")) {
 				s += ss;
-				paridroidEval(s);
+				System.out.println(s);
+				System.out.println(paridroidEval(s));
 				s = "";
 			} else {
 				s += ss;
 			}
 		}
 		if (s.length() > 0) {
-			paridroidEval(s);
+			System.out.println(s);
+			System.out.println(paridroidEval(s));
 		}
 		return true;
 	}

@@ -5,9 +5,10 @@ import java.io.FileNotFoundException;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
-import model.RSAGenerator;
-import controller.Controller;
+import model.RSAInterface;
+import model.RSAPari;
 import view.Window;
+import controller.Controller;
 
 public class Tester {
 
@@ -27,7 +28,7 @@ public class Tester {
 		}
 
 		Window window = new Window();
-		RSAGenerator rsa = new RSAGenerator();
+		RSAInterface rsa = new RSAPari();
 		Controller controller = new Controller(window, rsa);
 		window.setController(controller);
 	}
