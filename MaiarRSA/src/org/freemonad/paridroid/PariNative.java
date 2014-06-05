@@ -34,10 +34,19 @@ public class PariNative {
 		File f = new File(path);
 		String s = "";
 		Scanner sc = new Scanner(f);
-		while(sc.hasNext()) {
-			s += sc.nextLine()+"\n";
+		while (sc.hasNext()) {
+			String ss = sc.nextLine() + "\n";
+			if (ss.contains("}\n")) {
+				s += ss;
+				paridroidEval(s);
+				s = "";
+			} else {
+				s += ss;
+			}
 		}
-		paridroidEval(s);
+		if (s.length() > 0) {
+			paridroidEval(s);
+		}
 		return true;
 	}
 
