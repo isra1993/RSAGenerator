@@ -40,10 +40,17 @@ public class Window extends JFrame {
 	private JButton invertRol;
 	private JButton clear;
 	
+	private JLabel aLabel;
+	private JLabel bSignedLabel;
+	private JLabel bLabel;
+	
+	private boolean inverted;
+	
 	public Window() {
 		this.panel1 = new JPanel();
 		this.panel2 = new JPanel();
 		this.panel3 = new JPanel();
+		this.inverted = false;
 		init();
 	}
 	
@@ -297,7 +304,7 @@ public class Window extends JFrame {
 		constraints.insets = new Insets(0, 0, 0, 0);
 		constraints.fill = GridBagConstraints.NONE;
 		
-		JLabel aLabel = new JLabel("User A message: ");
+		aLabel = new JLabel("User A message: ");
 		constraints.gridx = 0;
 		constraints.gridy = 0;
 		constraints.gridwidth = 1;
@@ -323,7 +330,7 @@ public class Window extends JFrame {
 		constraints.fill = GridBagConstraints.NONE;
 		constraints.insets = new Insets(0, 0, 0, 0);
 		
-		JLabel bLabel = new JLabel("User B message: ");
+		bLabel = new JLabel("User B message: ");
 		constraints.gridx = 0;
 		constraints.gridy = 2;
 		constraints.gridwidth = 1;
@@ -349,7 +356,7 @@ public class Window extends JFrame {
 		constraints.fill = GridBagConstraints.NONE;
 		constraints.insets = new Insets(0, 0, 0, 0);
 		
-		JLabel bSignedLabel = new JLabel("User B signed message: ");
+		bSignedLabel = new JLabel("User B signed message: ");
 		constraints.gridx = 2;
 		constraints.gridy = 2;
 		constraints.gridwidth = 1;
@@ -480,14 +487,6 @@ public class Window extends JFrame {
 		this.aMessage.setText(aMessage);
 	}
 
-//	public String getaSignedMessage() {
-//		return aSignedMessage.getText();
-//	}
-//
-//	public void setaSignedMessage(String aSignedMessage) {
-//		this.aSignedMessage.setText(aSignedMessage);
-//	}
-
 	public String getbMessage() {
 		return bMessage.getText();
 	}
@@ -526,5 +525,19 @@ public class Window extends JFrame {
 
 	public JButton getClear() {
 		return clear;
+	}
+	
+	public void setInvert() {
+		if (this.inverted) {
+			this.inverted = false;
+			this.aLabel.setText("User A message: ");
+			this.bLabel.setText("User B message: ");
+			this.bSignedLabel.setText("User B signed message: ");
+		} else {
+			this.inverted = true;
+			this.aLabel.setText("User B message: ");
+			this.bLabel.setText("User A message: ");
+			this.bSignedLabel.setText("User A signed message: ");
+		}
 	}
 }

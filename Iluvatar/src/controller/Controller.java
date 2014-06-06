@@ -13,10 +13,12 @@ public class Controller implements ActionListener {
 	private Window window;
 	private RSAController rsa;
 	private int maxLength;
+	private boolean invert;
 
 	public Controller(Window window, RSAInterface rsa) {
 		this.window = window;
 		this.rsa = new RSAController(rsa);
+		this.invert = false;
 	}
 
 	@Override
@@ -65,7 +67,7 @@ public class Controller implements ActionListener {
 			}
 
 		} else if (event.getSource() == window.getSign()) {
-			if (!window.getaMessage().equals("")) {
+			if (!window.getaMessage().equals("") && !this.invert) {
 				String na = this.window.getNa();
 				String da = this.window.getDa();
 				String nb = this.window.getNb();
@@ -75,31 +77,60 @@ public class Controller implements ActionListener {
 				String sign = this.rsa.cipherMessage(na, da, msg, maxLength);
 				this.window.setbMessage(message);
 				this.window.setbSignedMessage(sign);
-			}
-
-			if (!window.getbMessage().equals("")) {
-
-			}
-		} else if (event.getSource() == window.getVerifySign()) {
-			if (!window.getbSignedMessage().equals("")
-					&& !window.getbSignedMessage().equals("")) {
+			} 
+			
+			if (!window.getaMessage().equals("") && this.invert) {
 				String na = this.window.getNa();
 				String ea = this.window.getEa();
 				String nb = this.window.getNb();
 				String db = this.window.getDb();
-				String msg = this.window.getbMessage();
-				String sign = this.window.getbSignedMessage();
-				msg = this.rsa.decipherMessage(nb, db, msg, maxLength);
-				sign = this.rsa.decipherMessage(na, ea, sign, maxLength);
-				this.window.setbMessage(msg);
-				if (msg.equals(sign)) {
-					this.window.setbSignedMessage("SIGNATURE OK");
-				} else {
-					this.window.setbSignedMessage("SIGNATURE FAIL!!");
+				String msg = this.window.getaMessage();
+				String message = this.rsa.cipherMessage(na, ea, msg, maxLength);
+				String sign = this.rsa.cipherMessage(nb, db, msg, maxLength);
+				this.window.setbMessage(message);
+				this.window.setbSignedMessage(sign);
+			}
+		} else if (event.getSource() == window.getVerifySign()) {
+			if (!this.invert) {
+				if (!window.getbSignedMessage().equals("")
+						&& !window.getbSignedMessage().equals("")) {
+					String na = this.window.getNa();
+					String ea = this.window.getEa();
+					String nb = this.window.getNb();
+					String db = this.window.getDb();
+					String msg = this.window.getbMessage();
+					String sign = this.window.getbSignedMessage();
+					msg = this.rsa.decipherMessage(nb, db, msg, maxLength);
+					sign = this.rsa.decipherMessage(na, ea, sign, maxLength);
+					this.window.setbMessage(msg);
+					if (msg.equals(sign)) {
+						this.window.setbSignedMessage("SIGNATURE OK");
+					} else {
+						this.window.setbSignedMessage("SIGNATURE FAIL!!");
+					}
+				}
+			} else {
+				if (!window.getbSignedMessage().equals("")
+						&& !window.getbSignedMessage().equals("")) {
+					String na = this.window.getNa();
+					String da = this.window.getDa();
+					String nb = this.window.getNb();
+					String eb = this.window.getEb();
+					String msg = this.window.getbMessage();
+					String sign = this.window.getbSignedMessage();
+					msg = this.rsa.decipherMessage(na, da, msg, maxLength);
+					sign = this.rsa.decipherMessage(nb, eb, sign, maxLength);
+					this.window.setbMessage(msg);
+					if (msg.equals(sign)) {
+						this.window.setbSignedMessage("SIGNATURE OK");
+					} else {
+						this.window.setbSignedMessage("SIGNATURE FAIL!!");
+					}
 				}
 			}
 		} else if (event.getSource() == window.getInvertRol()) {
-
+			this.invert = !this.invert;
+			this.window.setInvert();
 		} else if (event.getSource() == window.getClear()) {
 			clearFields();
 		}

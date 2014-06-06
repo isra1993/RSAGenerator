@@ -10,7 +10,6 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import model.RSAController;
 import model.RSAInterface;
 import model.RSAJava;
-import model.RSAPari;
 import view.Window;
 import controller.Controller;
 
