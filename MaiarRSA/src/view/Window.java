@@ -8,14 +8,13 @@ import java.awt.Insets;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import controller.Controller;
@@ -53,6 +52,8 @@ public class Window extends JFrame {
 	private boolean encript;
 	
 	private JMenuBar menu;
+	private JMenuItem saveInFile;
+	private JMenuItem about;
 	
 	public Window() {
 		this.panel1 = new JPanel();
@@ -60,19 +61,30 @@ public class Window extends JFrame {
 		this.panel3 = new JPanel();
 		this.panel4 = new JPanel();
 		this.panel5 = new JPanel();
+		this.menu = new JMenuBar();
 		init();
 	}
 
 	private void init() {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setBounds(300, 70, 800, 775);
-		this.setTitle("RSA Generator");
-//		this.setJMenuBar(menu);
+		this.setTitle("Maiar RSA Generator");
+		this.setJMenuBar(menu);
 		this.getContentPane().setLayout(new GridBagLayout());
 		GridBagConstraints constraints = new GridBagConstraints();
 		Dimension d = new Dimension(800, 775);
 		this.setMinimumSize(d);
-//		this.setMaximumSize(d);
+		
+		JMenu file = new JMenu("File");
+		JMenu help = new JMenu("Help");
+		
+		this.saveInFile = new JMenuItem("Save In File");
+		this.about = new JMenuItem("About");
+		file.add(saveInFile);
+		help.add(about);
+		
+		this.menu.add(file);
+		this.menu.add(help);
 		
 		panel1.setLayout(new GridBagLayout());
 		constraints.gridx = 0;
@@ -500,6 +512,8 @@ public class Window extends JFrame {
 		this.invertRol.addActionListener(controller);
 		this.java.addActionListener(controller);
 		this.pari.addActionListener(controller);
+		this.saveInFile.addActionListener(controller);
+		this.about.addActionListener(controller);
 	}
 
 	public String getP() {
@@ -618,5 +632,13 @@ public class Window extends JFrame {
 
 	public JRadioButton getPari() {
 		return pari;
+	}
+
+	public JMenuItem getSaveInFile() {
+		return saveInFile;
+	}
+
+	public JMenuItem getAbout() {
+		return about;
 	}
 }

@@ -3,6 +3,8 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 import model.RSAController;
 import view.Window;
 
@@ -64,6 +66,14 @@ public class Controller implements ActionListener {
 			this.java = true;
 		} else if (event.getSource() == window.getPari()) {
 			this.java = false;
+		} else if (event.getSource() == window.getSaveInFile()) {
+			
+		} else if (event.getSource() == window.getAbout()) {
+			JOptionPane
+			.showMessageDialog(
+					window,
+					"Name: Maiar RSA Generator \nAuthors: \n\t\t\t\t\tRuben Rodriguez Fernandez \n\t\t\t\tIsrael Garcia Centeno \n\t\t\t\tJesus Liebana Losada \n\t\t\t\tCarlos Mayo de Prado \nVersion: Beta 2",
+					"About", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 
