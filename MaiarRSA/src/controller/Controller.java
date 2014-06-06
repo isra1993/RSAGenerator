@@ -14,6 +14,7 @@ public class Controller implements ActionListener {
 	private int maxMsgLength;
 	private boolean encrypt;
 	private boolean initRSAAlgorithm;
+	private boolean java;
 
 	public Controller(Window window, RSAController rsa) {
 		this.window = window;
@@ -21,6 +22,7 @@ public class Controller implements ActionListener {
 		this.encrypt = true;
 		this.maxMsgLength = 0;
 		this.initRSAAlgorithm = false;
+		this.java = true;
 	}
 
 	@Override
@@ -30,7 +32,7 @@ public class Controller implements ActionListener {
 			this.rsa.initAlgorithm();
 		}
 		if (event.getSource() == window.getPrimesButton()) {
-			String[] fields = this.rsa.getPQ(DEFAULT_R_LENGTH);
+			String[] fields = this.rsa.getPQ(Integer.parseInt(window.getR()));
 			window.setpField(fields[0]);
 			window.setqField(fields[1]);
 			window.setDataButtonEnabled(true);
@@ -57,6 +59,11 @@ public class Controller implements ActionListener {
 			clearAll();
 		} else if (event.getSource() == window.getInvertRol()) {
 			this.encrypt = !this.encrypt;
+			this.window.setEncript();
+		} else if (event.getSource() == window.getJava()) {
+			this.java = true;
+		} else if (event.getSource() == window.getPari()) {
+			this.java = false;
 		}
 	}
 
@@ -69,6 +76,7 @@ public class Controller implements ActionListener {
 		window.setdField("");
 		window.setWrittenField("");
 		window.setProcessedField("");
+		window.setrField("");
 		window.setDataButtonEnabled(false);
 		window.setMessageButtonEnabled(false);
 	}

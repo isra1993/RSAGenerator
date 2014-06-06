@@ -6,12 +6,17 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import controller.Controller;
 
@@ -23,22 +28,29 @@ public class Window extends JFrame {
 	private JPanel panel2;
 	private JPanel panel3;
 	private JPanel panel4;
+	private JPanel panel5;
 	
-	private JTextArea pField;
-	private JTextArea qField;
-	private JTextArea nField;
-	private JTextArea phiField;
-	private JTextArea eField;
-	private JTextArea dField;
-	private JTextArea writtenField;
-	private JTextArea processedField;
+	private JTextField pField;
+	private JTextField qField;
+	private JTextField nField;
+	private JTextField phiField;
+	private JTextField eField;
+	private JTextField dField;
+	private JTextField writtenField;
+	private JTextField processedField;
+	private JTextField rField;
 	
 	private JButton primesButton;
 	private JButton dataButton;
 	private JButton messageButton;
 	private JButton clearButton;
 	private JButton invertRol;
-	private JButton resetPari;
+	
+	private JRadioButton java;
+	private JRadioButton pari;
+	
+	private JLabel writtenLabel;
+	private boolean encript;
 	
 	private JMenuBar menu;
 	
@@ -47,6 +59,7 @@ public class Window extends JFrame {
 		this.panel2 = new JPanel();
 		this.panel3 = new JPanel();
 		this.panel4 = new JPanel();
+		this.panel5 = new JPanel();
 		init();
 	}
 
@@ -57,17 +70,20 @@ public class Window extends JFrame {
 //		this.setJMenuBar(menu);
 		this.getContentPane().setLayout(new GridBagLayout());
 		GridBagConstraints constraints = new GridBagConstraints();
-		this.setMinimumSize(new Dimension(555, 550));
+		Dimension d = new Dimension(800, 775);
+		this.setMinimumSize(d);
+//		this.setMaximumSize(d);
 		
 		panel1.setLayout(new GridBagLayout());
 		constraints.gridx = 0;
 		constraints.gridy = 0;
 		constraints.gridwidth = 1;
 		constraints.gridheight = 1;
-		constraints.weightx = 1.0;
+		constraints.weightx = 3.0;
 		constraints.weighty = 1.0;
 		constraints.fill = GridBagConstraints.BOTH;
-		constraints.insets = new Insets(0, 10, 0, 10);
+		constraints.insets = new Insets(0, 10, 0, 0);
+		this.panel1.setMaximumSize(new Dimension(780, 150));
 		//Creates a border from this panel with a title
     	panel1.setBorder(BorderFactory.createTitledBorder("Primes p & q"));
 		//Add panel1 to the content pane
@@ -89,7 +105,7 @@ public class Window extends JFrame {
 		constraints.weightx = 0.0;
 		constraints.weighty = 0.0;
 		
-		this.pField = new JTextArea();
+		this.pField = new JTextField();
 		constraints.gridx = 1;
 		constraints.gridy = 0;
 		constraints.gridwidth = 1;
@@ -97,7 +113,7 @@ public class Window extends JFrame {
 		constraints.weightx = 5.0;
 		constraints.weighty = 1.0;
 		constraints.insets = new Insets(20, 0, 10, 20);
-		constraints.fill = GridBagConstraints.BOTH;
+		constraints.fill = GridBagConstraints.HORIZONTAL;
 		this.pField.setEditable(false);
 		this.panel1.add(pField, constraints);
 		constraints.weightx = 0.0;
@@ -116,7 +132,7 @@ public class Window extends JFrame {
 		constraints.weightx = 0.0;
 		constraints.weighty = 0.0;
 		
-		this.qField = new JTextArea();
+		this.qField = new JTextField();
 		constraints.gridx = 1;
 		constraints.gridy = 1;
 		constraints.gridwidth = 1;
@@ -124,7 +140,7 @@ public class Window extends JFrame {
 		constraints.weightx = 5.0;
 		constraints.weighty = 1.0;
 		constraints.insets = new Insets(20, 0, 10, 20);
-		constraints.fill = GridBagConstraints.BOTH;
+		constraints.fill = GridBagConstraints.HORIZONTAL;
 		this.qField.setEditable(false);
 		this.panel1.add(qField, constraints);
 		constraints.weightx = 0.0;
@@ -132,15 +148,53 @@ public class Window extends JFrame {
 		constraints.insets = new Insets(0, 0, 0, 0);
 		constraints.fill = GridBagConstraints.NONE;
 		
+		panel5.setLayout(new GridBagLayout());
+		constraints.gridx = 1;
+		constraints.gridy = 0;
+		constraints.gridwidth = 1;
+		constraints.gridheight = 1;
+		constraints.weightx = 0.5;
+		constraints.weighty = 1.0;
+		constraints.fill = GridBagConstraints.BOTH;
+		constraints.insets = new Insets(0, 0, 0, 10);
+		//Creates a border from this panel with a title
+    	panel5.setBorder(BorderFactory.createTitledBorder("p & q size"));
+		//Add panel1 to the content pane
+		this.getContentPane().add(panel5, constraints);
+		//Restart constraints
+		constraints.weightx = 0.0;
+		constraints.weighty = 0.0;
+		constraints.insets = new Insets(0, 0, 0, 0);
+		constraints.fill = GridBagConstraints.NONE;
+		
+		rField = new JTextField("10");
+		constraints.gridx = 0;
+		constraints.gridy = 0;
+		constraints.gridwidth = 1;
+		constraints.gridheight = 1;
+		constraints.weightx = 1.0;
+		constraints.weighty = 2.0;
+		constraints.insets = new Insets(0, 40, 0, 40);
+		d = new Dimension(100, 30);
+		rField.setSize(d);
+		rField.setPreferredSize(d);
+		rField.setMinimumSize(d);
+		rField.setHorizontalAlignment(0);
+		this.panel5.add(rField, constraints);
+		constraints.weightx = 0.0;
+		constraints.weighty = 0.0;
+		constraints.insets = new Insets(0, 0, 0, 0);
+		
 		panel2.setLayout(new GridBagLayout());
 		constraints.gridx = 0;
 		constraints.gridy = 1;
-		constraints.gridwidth = 1;
+		constraints.gridwidth = 2;
 		constraints.gridheight = 1;
 		constraints.weightx = 1.0;
 		constraints.weighty = 1.0;
 		constraints.fill = GridBagConstraints.BOTH;
 		constraints.insets = new Insets(0, 10, 0, 10);
+		this.panel2.setMaximumSize(new Dimension(780, 150));
 		//Creates a border from this panel with a title
     	panel2.setBorder(BorderFactory.createTitledBorder("RSA Data (n, phi, e, d)"));
 		//Add panel1 to the content pane
@@ -162,7 +216,7 @@ public class Window extends JFrame {
 		constraints.weightx = 0.0;
 		constraints.weighty = 0.0;
 		
-		this.nField = new JTextArea();
+		this.nField = new JTextField();
 		constraints.gridx = 1;
 		constraints.gridy = 0;
 		constraints.gridwidth = 1;
@@ -170,7 +224,7 @@ public class Window extends JFrame {
 		constraints.weightx = 5.0;
 		constraints.weighty = 1.0;
 		constraints.insets = new Insets(20, 0, 10, 20);
-		constraints.fill = GridBagConstraints.BOTH;
+		constraints.fill = GridBagConstraints.HORIZONTAL;
 		this.nField.setEditable(false);
 		this.panel2.add(nField, constraints);
 		constraints.weightx = 0.0;
@@ -189,7 +243,7 @@ public class Window extends JFrame {
 		constraints.weightx = 0.0;
 		constraints.weighty = 0.0;
 		
-		this.phiField = new JTextArea();
+		this.phiField = new JTextField();
 		constraints.gridx = 3;
 		constraints.gridy = 0;
 		constraints.gridwidth = 1;
@@ -197,7 +251,7 @@ public class Window extends JFrame {
 		constraints.weightx = 5.0;
 		constraints.weighty = 1.0;
 		constraints.insets = new Insets(20, 0, 10, 20);
-		constraints.fill = GridBagConstraints.BOTH;
+		constraints.fill = GridBagConstraints.HORIZONTAL;
 		this.phiField.setEditable(false);
 		this.panel2.add(phiField, constraints);
 		constraints.weightx = 0.0;
@@ -216,7 +270,7 @@ public class Window extends JFrame {
 		constraints.weightx = 0.0;
 		constraints.weighty = 0.0;
 		
-		this.eField = new JTextArea();
+		this.eField = new JTextField();
 		constraints.gridx = 1;
 		constraints.gridy = 1;
 		constraints.gridwidth = 1;
@@ -224,7 +278,7 @@ public class Window extends JFrame {
 		constraints.weightx = 5.0;
 		constraints.weighty = 1.0;
 		constraints.insets = new Insets(20, 0, 10, 20);
-		constraints.fill = GridBagConstraints.BOTH;
+		constraints.fill = GridBagConstraints.HORIZONTAL;
 		this.eField.setEditable(false);
 		this.panel2.add(eField, constraints);
 		constraints.weightx = 0.0;
@@ -243,7 +297,7 @@ public class Window extends JFrame {
 		constraints.weightx = 0.0;
 		constraints.weighty = 0.0;
 		
-		this.dField = new JTextArea();
+		this.dField = new JTextField();
 		constraints.gridx = 3;
 		constraints.gridy = 1;
 		constraints.gridwidth = 1;
@@ -251,7 +305,7 @@ public class Window extends JFrame {
 		constraints.weightx = 5.0;
 		constraints.weighty = 1.0;
 		constraints.insets = new Insets(20, 0, 10, 20);
-		constraints.fill = GridBagConstraints.BOTH;
+		constraints.fill = GridBagConstraints.HORIZONTAL;
 		this.dField.setEditable(false);
 		this.panel2.add(dField, constraints);
 		constraints.weightx = 0.0;
@@ -262,7 +316,7 @@ public class Window extends JFrame {
 		panel3.setLayout(new GridBagLayout());
 		constraints.gridx = 0;
 		constraints.gridy = 2;
-		constraints.gridwidth = 1;
+		constraints.gridwidth = 2;
 		constraints.gridheight = 1;
 		constraints.weightx = 1.0;
 		constraints.weighty = 1.0;
@@ -278,7 +332,8 @@ public class Window extends JFrame {
 		constraints.insets = new Insets(0, 0, 0, 0);
 		constraints.fill = GridBagConstraints.NONE;
 		
-		JLabel writtenLabel = new JLabel("Insert a message to encript/decript: ");
+		this.encript = true;
+		this.writtenLabel = new JLabel("Insert a message to encript: ");
 		constraints.gridx = 0;
 		constraints.gridy = 0;
 		constraints.gridwidth = 1;
@@ -289,7 +344,7 @@ public class Window extends JFrame {
 		constraints.weightx = 0.0;
 		constraints.weighty = 0.0;
 		
-		this.writtenField = new JTextArea();
+		this.writtenField = new JTextField();
 		constraints.gridx = 0;
 		constraints.gridy = 1;
 		constraints.gridwidth = 1;
@@ -315,7 +370,7 @@ public class Window extends JFrame {
 		constraints.weightx = 0.0;
 		constraints.weighty = 0.0;
 		
-		this.processedField = new JTextArea();
+		this.processedField = new JTextField();
 		constraints.gridx = 0;
 		constraints.gridy = 3;
 		constraints.gridwidth = 1;
@@ -334,7 +389,7 @@ public class Window extends JFrame {
 		panel4.setLayout(new GridBagLayout());
 		constraints.gridx = 0;
 		constraints.gridy = 3;
-		constraints.gridwidth = 1;
+		constraints.gridwidth = 2;
 		constraints.gridheight = 1;
 		constraints.weightx = 1.0;
 		constraints.weighty = 1.0;
@@ -353,7 +408,7 @@ public class Window extends JFrame {
 		this.primesButton = new JButton("Generate Primes");
 		constraints.gridx = 0;
 		constraints.gridy = 0;
-		constraints.gridwidth = 1;
+		constraints.gridwidth = 2;
 		constraints.gridheight = 1;
 		constraints.weightx = 1.0;
 		constraints.weighty = 1.0;
@@ -362,7 +417,7 @@ public class Window extends JFrame {
 		constraints.weighty = 0.0;
 		
 		this.dataButton = new JButton("Generate RSA Data");
-		constraints.gridx = 1;
+		constraints.gridx = 2;
 		constraints.gridy = 0;
 		constraints.gridwidth = 1;
 		constraints.gridheight = 1;
@@ -374,7 +429,7 @@ public class Window extends JFrame {
 		constraints.weighty = 0.0;
 		
 		this.messageButton = new JButton("Process Message");
-		constraints.gridx = 2;
+		constraints.gridx = 3;
 		constraints.gridy = 0;
 		constraints.gridwidth = 1;
 		constraints.gridheight = 1;
@@ -387,7 +442,7 @@ public class Window extends JFrame {
 		
 		this.clearButton = new JButton("Clear All");
 		constraints.gridx = 3;
-		constraints.gridy = 0;
+		constraints.gridy = 1;
 		constraints.gridwidth = 1;
 		constraints.gridheight = 1;
 		constraints.weightx = 1.0;
@@ -397,7 +452,7 @@ public class Window extends JFrame {
 		constraints.weighty = 0.0;
 		
 		this.invertRol = new JButton("Invert Rol");
-		constraints.gridx = 1;
+		constraints.gridx = 2;
 		constraints.gridy = 1;
 		constraints.gridwidth = 1;
 		constraints.gridheight = 1;
@@ -407,16 +462,32 @@ public class Window extends JFrame {
 		constraints.weightx = 0.0;
 		constraints.weighty = 0.0;
 		
-		this.resetPari = new JButton("Reset Pari Library");
-		constraints.gridx = 2;
+		this.java = new JRadioButton("Java");
+		constraints.gridx = 0;
 		constraints.gridy = 1;
 		constraints.gridwidth = 1;
 		constraints.gridheight = 1;
-		constraints.weightx = 1.0;
+		constraints.weightx = 0.5;
 		constraints.weighty = 1.0;
-		this.panel4.add(resetPari, constraints);
+		this.java.setSelected(true);
+		this.panel4.add(java, constraints);
 		constraints.weightx = 0.0;
 		constraints.weighty = 0.0;
+		
+		this.pari = new JRadioButton("Pari");
+		constraints.gridx = 1;
+		constraints.gridy = 1;
+		constraints.gridwidth = 1;
+		constraints.gridheight = 1;
+		constraints.weightx = 0.5;
+		constraints.weighty = 1.0;
+		this.panel4.add(pari, constraints);
+		constraints.weightx = 0.0;
+		constraints.weighty = 0.0;
+		
+		ButtonGroup group = new ButtonGroup();
+		group.add(java);
+		group.add(pari);
 		
 		this.setVisible(true);
 	}
@@ -427,7 +498,8 @@ public class Window extends JFrame {
 		this.messageButton.addActionListener(controller);
 		this.clearButton.addActionListener(controller);
 		this.invertRol.addActionListener(controller);
-		this.resetPari.addActionListener(controller);
+		this.java.addActionListener(controller);
+		this.pari.addActionListener(controller);
 	}
 
 	public String getP() {
@@ -444,6 +516,14 @@ public class Window extends JFrame {
 
 	public void setqField(String qField) {
 		this.qField.setText(qField);
+	}
+	
+	public String getR() {
+		return rField.getText();
+	}
+	
+	public void setrField(String r) {
+		this.rField.setText(r);
 	}
 
 	public String getN() {
@@ -522,7 +602,21 @@ public class Window extends JFrame {
 		return this.invertRol;
 	}
 	
-	public JButton getResetPari() {
-		return this.resetPari;
+	public void setEncript() {
+		if (this.encript) {
+			this.writtenLabel.setText("Insert a message to decript: ");
+			this.encript = false;
+		} else {
+			this.writtenLabel.setText("Insert a message to encript: ");
+			this.encript = true;
+		}
+	}
+
+	public JRadioButton getJava() {
+		return java;
+	}
+
+	public JRadioButton getPari() {
+		return pari;
 	}
 }
