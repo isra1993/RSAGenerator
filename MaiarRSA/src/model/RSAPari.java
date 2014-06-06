@@ -45,7 +45,7 @@ public class RSAPari implements RSAInterface {
 	 * java.lang.String, int)
 	 */
 	@Override
-	public String cipherMessage(String n, String e, String msg, int maxLength) {
+	public byte[] cipherMessage(String n, String e, String msg) {
 		BigInteger nn = new BigInteger(n);
 		BigInteger ne = new BigInteger(e);
 		return RSA.encrypt(msg, ne, nn);
@@ -58,10 +58,10 @@ public class RSAPari implements RSAInterface {
 	 * java.lang.String, java.lang.String, int)
 	 */
 	@Override
-	public String decipherMessage(String n, String d, String msg, int maxLength) {
+	public byte[] decipherMessage(String n, String d, byte[] data) {
 		BigInteger nn = new BigInteger(n);
 		BigInteger nd = new BigInteger(d);
-		return RSA.decrypt(msg, nd, nn);
+		return RSA.decrypt(data, nd, nn);
 	}
 
 	@Override

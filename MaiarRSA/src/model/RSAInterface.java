@@ -6,11 +6,9 @@ public interface RSAInterface {
 
 	public abstract String[] getEDN(String p, String q);
 
-	public abstract String cipherMessage(String n, String e, String msg,
-			int maxLength);
+	public abstract byte[] cipherMessage(String n, String e, String msg);
 
-	public abstract String decipherMessage(String n, String d, String msg,
-			int maxLength);
+	public abstract byte[] decipherMessage(String n, String d, byte[] msg);
 
 	public void init();
 
