@@ -29,7 +29,7 @@ public class Window extends JFrame {
 	private JTextField ebField;
 	private JTextField dbField;
 	private JTextField aMessage;
-	private JTextField aSignedMessage;
+//	private JTextField aSignedMessage;
 	private JTextField bMessage;
 	private JTextField bSignedMessage;
 	
@@ -323,28 +323,28 @@ public class Window extends JFrame {
 		constraints.fill = GridBagConstraints.NONE;
 		constraints.insets = new Insets(0, 0, 0, 0);
 		
-		JLabel aSignedLabel = new JLabel("User A signed message: ");
-		constraints.gridx = 2;
-		constraints.gridy = 0;
-		constraints.gridwidth = 1;
-		constraints.gridheight = 1;
-		constraints.weightx = 0.5;
-		constraints.weighty = 0.1;
-		this.panel3.add(aSignedLabel, constraints);
-		constraints.weightx = 0.0;
-		constraints.weighty = 0.0;
-		
-		this.aSignedMessage = new JTextField();
-		constraints.gridx = 2;
-		constraints.gridy = 1;
-		constraints.gridwidth = 2;
-		constraints.gridheight = 1;
-		constraints.weightx = 1.0;
-		constraints.weighty = 1.0;
-		constraints.fill = GridBagConstraints.HORIZONTAL;
-		constraints.insets = new Insets(0, 10, 0, 10);
-		this.aSignedMessage.setEditable(false);
-		this.panel3.add(aSignedMessage, constraints);
+//		JLabel aSignedLabel = new JLabel("User A signed message: ");
+//		constraints.gridx = 2;
+//		constraints.gridy = 0;
+//		constraints.gridwidth = 1;
+//		constraints.gridheight = 1;
+//		constraints.weightx = 0.5;
+//		constraints.weighty = 0.1;
+//		this.panel3.add(aSignedLabel, constraints);
+//		constraints.weightx = 0.0;
+//		constraints.weighty = 0.0;
+//		
+//		this.aSignedMessage = new JTextField();
+//		constraints.gridx = 2;
+//		constraints.gridy = 1;
+//		constraints.gridwidth = 2;
+//		constraints.gridheight = 1;
+//		constraints.weightx = 1.0;
+//		constraints.weighty = 1.0;
+//		constraints.fill = GridBagConstraints.HORIZONTAL;
+//		constraints.insets = new Insets(0, 10, 0, 10);
+//		this.aSignedMessage.setEditable(false);
+//		this.panel3.add(aSignedMessage, constraints);
 		constraints.weightx = 0.0;
 		constraints.weighty = 0.0;
 		constraints.fill = GridBagConstraints.NONE;
@@ -396,7 +396,7 @@ public class Window extends JFrame {
 		constraints.weighty = 1.0;
 		constraints.fill = GridBagConstraints.HORIZONTAL;
 		constraints.insets = new Insets(0, 10, 0, 10);
-		this.bSignedMessage.setEditable(false);
+		this.bSignedMessage.setEditable(true);
 		this.panel3.add(bSignedMessage, constraints);
 		constraints.weightx = 0.0;
 		constraints.weighty = 0.0;
@@ -507,13 +507,13 @@ public class Window extends JFrame {
 		this.aMessage.setText(aMessage);
 	}
 
-	public String getaSignedMessage() {
-		return aSignedMessage.getText();
-	}
-
-	public void setaSignedMessage(String aSignedMessage) {
-		this.aSignedMessage.setText(aSignedMessage);
-	}
+//	public String getaSignedMessage() {
+//		return aSignedMessage.getText();
+//	}
+//
+//	public void setaSignedMessage(String aSignedMessage) {
+//		this.aSignedMessage.setText(aSignedMessage);
+//	}
 
 	public String getbMessage() {
 		return bMessage.getText();
