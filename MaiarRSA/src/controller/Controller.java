@@ -2,10 +2,8 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 
 import model.RSAController;
-import model.RSAInterface;
 import view.Window;
 
 public class Controller implements ActionListener {

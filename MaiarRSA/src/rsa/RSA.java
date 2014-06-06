@@ -1,9 +1,6 @@
 package rsa;
 
 import java.math.BigInteger;
-import java.util.Arrays;
-
-import org.apache.commons.codec.binary.Base64;
 
 public class RSA {
 

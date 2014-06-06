@@ -2,8 +2,6 @@ package test;
 
 import java.io.FileNotFoundException;
 import java.lang.reflect.InvocationTargetException;
-import java.math.BigInteger;
-import java.util.Arrays;
 
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -11,6 +9,7 @@ import javax.swing.UIManager.LookAndFeelInfo;
 
 import model.RSAController;
 import model.RSAInterface;
+import model.RSAJava;
 import model.RSAPari;
 import view.Window;
 import controller.Controller;
@@ -39,7 +38,7 @@ public class Tester {
 				}
 
 				Window window = new Window();
-				RSAInterface rsa = new RSAPari();
+				RSAInterface rsa = new RSAJava();
 				RSAController rsac = new RSAController(rsa);
 				Controller controller = new Controller(window, rsac);
 				window.setController(controller);

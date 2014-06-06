@@ -43,7 +43,7 @@ public class RSAJava implements RSAInterface {
 	 * (non-Javadoc)
 	 * 
 	 * @see model.RSAInterface#cipherMessage(java.lang.String, java.lang.String,
-	 * java.lang.String, int)
+	 * java.lang.String)
 	 */
 	@Override
 	public byte[] cipherMessage(String n, String e, String msg) {
@@ -56,7 +56,7 @@ public class RSAJava implements RSAInterface {
 	 * (non-Javadoc)
 	 * 
 	 * @see model.RSAInterface#decipherMessage(java.lang.String,
-	 * java.lang.String, java.lang.String, int)
+	 * java.lang.String, java.lang.String)
 	 */
 	@Override
 	public byte[] decipherMessage(String n, String d, byte[] data) {
@@ -67,8 +67,7 @@ public class RSAJava implements RSAInterface {
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
-
+		// Nothing to initialize
 	}
 
 	public double log(BigInteger val) {
