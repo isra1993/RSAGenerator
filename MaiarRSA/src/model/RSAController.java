@@ -13,6 +13,11 @@ public class RSAController {
 		this.algorithm = algorithm;
 	}
 
+	public void setAlgorithm(RSAInterface algorithm) {
+		this.algorithm = algorithm;
+		this.initAlgorithm();
+	}
+
 	public void initAlgorithm() {
 		this.algorithm.init();
 	}

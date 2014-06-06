@@ -10,6 +10,8 @@ import rsa.RSA;
 
 public class RSAPari implements RSAInterface {
 
+	private static boolean init = false;
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -66,12 +68,16 @@ public class RSAPari implements RSAInterface {
 
 	@Override
 	public void init() {
-		PariNative.paridroidInit();
-		try {
-			PariNative.loadLibray(new File("").getAbsolutePath() + "/pari.gp");
-		} catch (FileNotFoundException e) {
-			System.err.println("Cannot load pari library");
-			System.exit(-1);
+		if (!init) {
+			PariNative.paridroidInit();
+			try {
+				PariNative.loadLibray(new File("").getAbsolutePath()
+						+ "/pari.gp");
+			} catch (FileNotFoundException e) {
+				System.err.println("Cannot load pari library");
+				System.exit(-1);
+			}
+			init = true;
 		}
 	}
 }

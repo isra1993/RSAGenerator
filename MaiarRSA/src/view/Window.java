@@ -67,12 +67,12 @@ public class Window extends JFrame {
 
 	private void init() {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setBounds(300, 70, 800, 775);
+		this.setBounds(300, 70, 800, 700);
 		this.setTitle("Maiar RSA Generator");
 		this.setJMenuBar(menu);
 		this.getContentPane().setLayout(new GridBagLayout());
 		GridBagConstraints constraints = new GridBagConstraints();
-		Dimension d = new Dimension(800, 775);
+		Dimension d = new Dimension(800, 700);
 		this.setMinimumSize(d);
 		
 		JMenu file = new JMenu("File");

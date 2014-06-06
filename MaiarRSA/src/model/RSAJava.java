@@ -10,6 +10,7 @@ public class RSAJava implements RSAInterface {
 	@Override
 	public String[] getPQ(int rNumber) {
 		SecureRandom r = new SecureRandom();
+		rNumber = (int) Math.pow(10, rNumber);
 		BigInteger p = new BigInteger(rNumber / 2, 100, r);
 		BigInteger q = new BigInteger(rNumber / 2, 100, r);
 		return new String[] { p.toString(), q.toString() };

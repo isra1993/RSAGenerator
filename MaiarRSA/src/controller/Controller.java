@@ -6,13 +6,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import model.RSAController;
+import model.RSAJava;
+import model.RSAPari;
 import view.Window;
 
 public class Controller implements ActionListener {
 
 	private Window window;
 	private RSAController rsa;
-	private static final int DEFAULT_R_LENGTH = 10;
 	private int maxMsgLength;
 	private boolean encrypt;
 	private boolean initRSAAlgorithm;
@@ -63,17 +64,17 @@ public class Controller implements ActionListener {
 			this.encrypt = !this.encrypt;
 			this.window.setEncript();
 		} else if (event.getSource() == window.getJava()) {
-			this.java = true;
+			this.rsa.setAlgorithm(new RSAJava());
 		} else if (event.getSource() == window.getPari()) {
-			this.java = false;
+			this.rsa.setAlgorithm(new RSAPari());
 		} else if (event.getSource() == window.getSaveInFile()) {
-			
+
 		} else if (event.getSource() == window.getAbout()) {
 			JOptionPane
-			.showMessageDialog(
-					window,
-					"Name: Maiar RSA Generator \nAuthors: \n\t\t\t\t\tRuben Rodriguez Fernandez \n\t\t\t\tIsrael Garcia Centeno \n\t\t\t\tJesus Liebana Losada \n\t\t\t\tCarlos Mayo de Prado \nVersion: Beta 2",
-					"About", JOptionPane.PLAIN_MESSAGE);
+					.showMessageDialog(
+							window,
+							"Name: Maiar RSA Generator \nAuthors: \n\t\t\t\t\tRuben Rodriguez Fernandez \n\t\t\t\tIsrael Garcia Centeno \n\t\t\t\tJesus Liebana Losada \n\t\t\t\tCarlos Mayo de Prado \nVersion: Beta 2",
+							"About", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 
