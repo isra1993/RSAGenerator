@@ -25,7 +25,7 @@ public class RSAJava implements RSAInterface {
 		BigInteger d;
 		BigInteger m = (pp.subtract(BigInteger.ONE)).multiply(qq
 				.subtract(BigInteger.ONE));
-		e = new BigInteger("3");
+		e = new BigInteger("65537");
 		while (m.gcd(e).intValue() > 1) {
 			e = e.add(new BigInteger("2"));
 		}

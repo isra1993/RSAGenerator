@@ -179,7 +179,7 @@ public class Window extends JFrame {
 		constraints.insets = new Insets(0, 0, 0, 0);
 		constraints.fill = GridBagConstraints.NONE;
 		
-		rField = new JTextField("10");
+		rField = new JTextField("2");
 		constraints.gridx = 0;
 		constraints.gridy = 0;
 		constraints.gridwidth = 1;
