@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 import model.RSAController;
 import model.RSAInterface;
@@ -103,7 +104,7 @@ public class Controller implements ActionListener {
 					msg = this.rsa.decipherMessage(nb, db, msg, maxLength);
 					sign = this.rsa.decipherMessage(na, ea, sign, maxLength);
 					this.window.setbMessage(msg);
-					if (msg.equals(sign)) {
+					if (Arrays.equals(sign.getBytes(), msg.getBytes())) {
 						this.window.setbSignedMessage("SIGNATURE OK");
 					} else {
 						this.window.setbSignedMessage("SIGNATURE FAIL!!");

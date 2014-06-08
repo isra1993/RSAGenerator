@@ -26,6 +26,12 @@ public class RSAController {
 		String[] chunks = split(msg, maxLength);
 		List<Byte> bytes = new ArrayList<Byte>();
 		for (String chunk : chunks) {
+			if (chunk.length() != maxLength) {
+				int chunkLength = chunk.length();
+				for (int i = 0; i < maxLength - chunkLength; ++i) {
+					chunk += '\0';
+				}
+			}
 			byte[] buff = algorithm.cipherMessage(n, e, chunk);
 			for (Byte b : buff) {
 				bytes.add(b);
